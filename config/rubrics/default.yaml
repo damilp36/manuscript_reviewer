@@ -1,0 +1,51 @@
+# Generic scholarly rubric. Used when triage cannot confidently match a
+# field-specific venue. Each criterion is scored 1-5 by every reviewer.
+id: default
+name: General Scholarly Review
+description: >
+  A venue-agnostic rubric covering the dimensions common to most peer review.
+scale:
+  min: 1
+  max: 5
+  labels:
+    1: Unacceptable
+    2: Weak
+    3: Borderline
+    4: Good
+    5: Excellent
+criteria:
+  - key: originality
+    name: Originality & Novelty
+    weight: 1.0
+    description: Does the work present new ideas, methods, or findings versus prior art?
+  - key: significance
+    name: Significance & Impact
+    weight: 1.0
+    description: How important is the contribution to the field?
+  - key: soundness
+    name: Technical Soundness
+    weight: 1.5
+    description: Are the methods, analysis, and conclusions valid and well supported?
+  - key: clarity
+    name: Clarity & Presentation
+    weight: 0.75
+    description: Is the paper well written, organized, and understandable?
+  - key: reproducibility
+    name: Reproducibility
+    weight: 1.0
+    description: Could an expert reproduce the results from what is provided?
+  - key: related_work
+    name: Related Work & Positioning
+    weight: 0.5
+    description: Is prior work adequately cited and the contribution positioned?
+  - key: ethics
+    name: Ethics & Integrity
+    weight: 0.5
+    description: Are ethical considerations, data use, and conflicts addressed?
+
+# Weighted-average score thresholds that map to a recommendation.
+decision_thresholds:
+  accept: 4.0
+  minor_revision: 3.25
+  major_revision: 2.5
+  # below major_revision => reject

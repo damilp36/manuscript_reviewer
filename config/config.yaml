@@ -1,0 +1,53 @@
+# =============================================================================
+# Manuscript Reviewer configuration
+# -----------------------------------------------------------------------------
+# Each pipeline role can use a different LLM backend. This lets you keep
+# sensitive manuscripts fully local (ollama) while optionally using a frontier
+# model for the harder reviewing step when your policy allows it.
+# =============================================================================
+
+# Provider connection settings.
+providers:
+  ollama:
+    base_url_env: OLLAMA_BASE_URL      # falls back to http://localhost:11434
+    timeout_seconds: 600
+  openai:
+    api_key_env: OPENAI_API_KEY
+  anthropic:
+    api_key_env: ANTHROPIC_API_KEY
+  mock:
+    # Deterministic offline backend. Used for tests and dry runs.
+    {}
+
+# Per-role backend selection.
+# provider must be one of: ollama | openai | anthropic | mock
+roles:
+  triage:
+    provider: ollama
+    model: llama3.1:8b
+    temperature: 0.0
+  reviewer:
+    # Reviewing is the hardest reasoning step. Use the largest model you can
+    # run locally, or switch provider to openai/anthropic when policy permits.
+    provider: ollama
+    model: qwen2.5:32b
+    temperature: 0.3
+  judge:
+    provider: ollama
+    model: qwen2.5:32b
+    temperature: 0.1
+
+# Privacy / independence controls.
+privacy:
+  # Strip author names, affiliations and acknowledgements before any text is
+  # sent to a model (enables double-blind review and limits PII exposure).
+  redact_author_identity: true
+  # Refuse to run if any role points at a non-local provider. Set true for
+  # manuscripts that must never leave the machine.
+  local_only: false
+
+review:
+  # Number of independent reviewer agents.
+  num_reviewers: 2
+  # Default rubric when triage cannot confidently match a venue rubric.
+  default_rubric: default

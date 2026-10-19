@@ -1,0 +1,51 @@
+# Rubric tuned for machine-learning / AI conference and journal submissions
+# (e.g. NeurIPS / ICML / TMLR style criteria).
+id: ml_conference
+name: Machine Learning Conference Review
+description: >
+  Review criteria for empirical and theoretical machine-learning papers,
+  emphasizing technical soundness, empirical rigor, and reproducibility.
+field_tags: [machine learning, ai, nlp, computer vision, deep learning, reinforcement learning]
+scale:
+  min: 1
+  max: 5
+  labels:
+    1: Strong reject
+    2: Reject
+    3: Borderline
+    4: Accept
+    5: Strong accept
+criteria:
+  - key: originality
+    name: Novelty of Contribution
+    weight: 1.0
+    description: Are the ideas, model, or theory novel relative to existing literature?
+  - key: soundness
+    name: Technical Soundness
+    weight: 1.5
+    description: Are claims supported by correct theory and/or valid experiments?
+  - key: empirical_rigor
+    name: Empirical Rigor
+    weight: 1.5
+    description: Strong baselines, ablations, statistical significance, fair comparisons?
+  - key: significance
+    name: Significance
+    weight: 1.0
+    description: Will the community build on this? Does it advance the state of the art?
+  - key: reproducibility
+    name: Reproducibility
+    weight: 1.0
+    description: Code, data, hyperparameters, and compute sufficiently documented?
+  - key: clarity
+    name: Clarity
+    weight: 0.75
+    description: Is the writing precise and the method clearly described?
+  - key: ethics
+    name: Ethics & Broader Impact
+    weight: 0.5
+    description: Are potential harms, data licensing, and societal impact addressed?
+
+decision_thresholds:
+  accept: 4.0
+  minor_revision: 3.25
+  major_revision: 2.5

@@ -1,0 +1,52 @@
+# Rubric tuned for clinical / biomedical journal submissions.
+# Emphasizes study design, patient safety, statistics, and reporting standards.
+id: clinical_journal
+name: Clinical / Biomedical Journal Review
+description: >
+  Review criteria for clinical studies, trials, and biomedical research,
+  aligned with reporting standards such as CONSORT / STROBE and research-ethics
+  expectations.
+field_tags: [medicine, clinical, biomedical, health, oncology, epidemiology, public health]
+scale:
+  min: 1
+  max: 5
+  labels:
+    1: Reject
+    2: Major concerns
+    3: Borderline
+    4: Minor concerns
+    5: Accept
+criteria:
+  - key: study_design
+    name: Study Design & Methodology
+    weight: 1.5
+    description: Appropriate design, sample size, randomization/controls, bias control?
+  - key: statistics
+    name: Statistical Analysis
+    weight: 1.5
+    description: Correct statistical methods, power, handling of confounders and missing data?
+  - key: clinical_significance
+    name: Clinical Significance
+    weight: 1.0
+    description: Does the finding meaningfully affect practice or patient outcomes?
+  - key: ethics
+    name: Ethics & Patient Safety
+    weight: 1.25
+    description: IRB approval, informed consent, trial registration, safety reporting?
+  - key: reporting_standards
+    name: Reporting Standards
+    weight: 1.0
+    description: Adherence to CONSORT/STROBE/PRISMA and transparent reporting?
+  - key: originality
+    name: Originality
+    weight: 0.75
+    description: Does the study add new clinical knowledge?
+  - key: clarity
+    name: Clarity
+    weight: 0.75
+    description: Clear, complete, and unambiguous presentation?
+
+decision_thresholds:
+  accept: 4.0
+  minor_revision: 3.25
+  major_revision: 2.5

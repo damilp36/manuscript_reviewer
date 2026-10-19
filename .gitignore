@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+
+# Env / secrets
+.env
+*.local
+
+# Test / tooling
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Reviewer output & logs (may contain unpublished manuscript content)
+output/
+runs/
+*.log
+
+# OS
+.DS_Store

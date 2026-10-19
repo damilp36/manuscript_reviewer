@@ -1,0 +1,49 @@
+Attention-Guided Sparse Routing for Efficient Multilingual Translation
+
+Jane Q. Researcher, Alan Example, and Maria Sample
+Department of Computer Science, Example University
+jane.researcher@example.edu, alan@example.edu
+
+Abstract
+We propose Attention-Guided Sparse Routing (AGSR), a mixture-of-experts layer
+that routes tokens to experts using a lightweight attention signal rather than a
+learned gating network. On three multilingual translation benchmarks, AGSR
+matches dense-model BLEU while reducing inference FLOPs by 41%. We further show
+that attention-based routing yields more balanced expert utilization than
+top-k gating, mitigating the expert-collapse problem. Our method requires no
+auxiliary load-balancing loss.
+
+1 Introduction
+Mixture-of-experts (MoE) models scale capacity without proportional compute, but
+their learned gating networks are unstable and often collapse onto a few experts.
+In this work we ask whether the attention distribution already present in a
+transformer can serve as a routing signal. We introduce AGSR and evaluate it on
+multilingual machine translation.
+
+2 Method
+AGSR computes a routing distribution from the query-key attention scores of the
+preceding self-attention layer, then dispatches each token to the top-2 experts.
+Because the signal is derived from attention, no additional gating parameters are
+introduced. We describe the dispatch and combine operations and their complexity.
+
+3 Experiments
+We evaluate on WMT14 En-De, WMT17 En-Zh, and a 12-language low-resource set. We
+compare against a dense transformer and a standard top-2 MoE with a load-balancing
+loss. AGSR matches dense BLEU within 0.3 points while using 41% fewer inference
+FLOPs. Expert utilization entropy is higher than the top-2 baseline.
+
+4 Limitations
+We evaluate only on translation and do not test on larger model scales. The
+compute savings assume an idealized dispatch with no communication overhead.
+
+5 Conclusion
+AGSR shows that attention can double as a routing signal, removing gating
+parameters and the load-balancing loss while preserving quality.
+
+Acknowledgements
+We thank the Example University cluster team and our funding agency Grant #12345.
+
+References
+[1] Shazeer et al. Outrageously large neural networks. 2017.
+[2] Vaswani et al. Attention is all you need. 2017.
+[3] Fedus et al. Switch Transformers. 2021.
